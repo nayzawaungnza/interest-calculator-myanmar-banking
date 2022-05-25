@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Interest Calculator Myanmar</h1>
+                <table class="interest-table ">
+                    <tbody>
+                        <tr>
+                            <!-- <td>Choose Account Type</td> -->
+                            <td>
+                                Choose Account Type
+                                <select id="types">
+                                    <option value="0">Fixed Deposit</option>
+                                    <option value="1">Savings Deposit</option>
+                                    <!-- <option value="2">Call Deposit Rate</option> -->
+                                    <option value="3">High Speed Savings Deposit</option>
+                                    <option value="4">Call Deposit</option>
+                    
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- <td>Period</td> -->
+                            <td>
+                                Period
+                                <select id="fmonths" class="months">
+                                    <option value="">- Months to Grow -</option>
+                                    <option value="6.75">30 days</option>
+                                    <option value="7.25">90 days</option>
+                                    <option value="7.5">180 days</option>
+                                    <option value="7.75">270 days</option>
+                                    <option value="8.15">365 days</option>
+                                    <option value="8.5">24 months</option>
+                                </select>
+
+                                <select id="nmonths" class="months">
+                                    <option value="">- Months to Grow -</option>
+                                    <option value="1">1 month</option>
+                                    <option value="2">2 months</option>
+                                    <option value="3">3 months</option>
+                                    <option value="4">4 months</option>
+                                    <option value="5">5 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="7">7 months</option>
+                                    <option value="8">8 months</option>
+                                    <option value="9">9 months</option>
+                                    <option value="10">10 months</option>
+                                    <option value="11">11 months</option>
+                                    <option value="12">12 months</option>
+                                </select>
+
+                                <!-- Savings Deposit -->
+                                <input type="hidden" id="smonths" value="6.5">
+
+                                <!-- High Speed Savings Deposit -->
+
+                                <select id="hsmonths" class="months">
+                                    <option value="">- Months to Grow -</option>
+                                    <option value="1">1 month</option>
+                                    <option value="2">2 months</option>
+                                    <option value="3">3 months</option>
+                                    <option value="4">4 months</option>
+                                    <option value="5">5 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="7">7 months</option>
+                                    <option value="8">8 months</option>
+                                    <option value="9">9 months</option>
+                                    <option value="10">10 months</option>
+                                    <option value="11">11 months</option>
+                                    <option value="12">12 months</option>
+                                </select>
+
+                                <input type="hidden" id="highspeed1" value="6.5">
+                                <input type="hidden" id="highspeed2" value="7">
+
+                                <!-- Premium Savings Deposit -->
+                                <input type="text" name="premiumtxt" id="premiumtxt" placeholder="Enter Day">
+
+                                <!-- 								<select id="psmonths" class="months">
+                                    <option value="">- Months to Grow -</option>
+                                    <option value="1">1 month</option>
+                                    <option value="2">2 months</option>
+                                    <option value="3">3 months</option>
+                                    <option value="4">4 months</option>
+                                    <option value="5">5 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="7">7 months</option>
+                                    <option value="8">8 months</option>
+                                    <option value="9">9 months</option>
+                                    <option value="10">10 months</option>
+                                    <option value="11">11 months</option>
+                                    <option value="12">12 months</option>
+                                </select> -->
+
+                                <input type="hidden" id="premium1" value="2">
+                                <input type="hidden" id="premium2" value="5">
+
+                                <!-- <select id="lmonths" class="months">
+                                    <option value="8.5">1</option>
+                                </select> -->
+
+                                <!-- <input type="text" id="nmonths" class="months"> -->
+
+                                <select id="cmonths" class="months">
+                                    <option value="6">1</option>
+                                    <option value="6">12</option>
+                                </select>
+                                <select id="spmonths" class="months">
+                                    <option value="8.5">12</option>
+                                </select>
+                                <div class="wrap rate" id="wrap-rate">Yearly Rate is <span id="interest-rate-show"></span><span>%</span><br><span id="get-rate"></span></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- <td>Amount</td> -->
+                            <td>
+                                Amount
+                                <input type="hidden" id="umonths" value="8.25">
+                                <input type="text" placeholder="Enter MMK Amount" id="amttext">
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- <td>Interest Amount</td> -->
+                            <td>
+                                Interest Amount
+                                <div id="result_rate"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- <td></td> -->
+                            <td><button type="button" id="rate_calculate">Calculate</button>
+                                <button type="button" id="clearBtn">Clear</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    new AutoNumeric('#amttext', 'integer');
+
+
+    jQuery(document).ready(function() {
+        jQuery(".disable-link>a").addClass("disabled-link disabled");
+        jQuery(".disable-link>a").each(function() {
+            if (jQuery(this).hasClass("disabled-link")) {
+                jQuery(this).removeAttr("href");
+            }
+        });
+
+
+        jQuery(".disabled-link").on('click', function() {
+            jQuery(".disabled-link").off('click');
+            return false;
+        });
+
+    });
+
+
+
+
+    jQuery(document).ready(function() {
+        jQuery("#amttext").val('');
+        jQuery("#types").val('0');
+        jQuery("#types").change(function() {
+            jQuery("#result_rate").text('');
+            jQuery("#amttext").val('');
+            jQuery("#nmonths").val('');
+            jQuery(".months").hide();
+
+            var select = jQuery("#types").val();
+            if (select == 0) {
+                jQuery("#fmonths").show();
+                jQuery("#monthchange").show();
+                jQuery("#daychange").hide();
+                jQuery("#wrap-rate").hide();
+                jQuery('#fmonths').find('option:first').attr('selected', 'selected');
+                jQuery("#premiumtxt").hide();
+                //jQuery("#fmonths").removeAttr("selected");
+
+                jQuery("#amttext").removeClass('error');
+                jQuery("#nmonths").removeClass('error');
+                jQuery("#fmonths").removeClass('error');
+                jQuery("#hsmonths").removeClass('error');
+                jQuery("#premiumtxt").removeClass('error');
+
+            }
+            if (select == 1) {
+                jQuery("#nmonths").show();
+                jQuery("#monthchange").show();
+                jQuery("#daychange").hide();
+                jQuery("#wrap-rate").hide();
+                jQuery('#nmonths').find('option:first').attr('selected', 'selected');
+                jQuery("#premiumtxt").hide();
+
+                jQuery("#amttext").removeClass('error');
+                jQuery("#nmonths").removeClass('error');
+                jQuery("#fmonths").removeClass('error');
+                jQuery("#hsmonths").removeClass('error');
+                jQuery("#premiumtxt").removeClass('error');
+            }
+            if (select == 2) { //Call Deposit
+                jQuery("#lmonths").show();
+                jQuery("#monthchange").hide();
+                jQuery("#daychange").show();
+                jQuery("#premiumtxt").hide();
+
+                jQuery("#amttext").removeClass('error');
+                jQuery("#nmonths").removeClass('error');
+                jQuery("#fmonths").removeClass('error');
+                jQuery("#hsmonths").removeClass('error');
+                jQuery("#premiumtxt").removeClass('error');
+            }
+            if (select == 3) {
+                jQuery("#hsmonths").show();
+                jQuery("#monthchange").show();
+                jQuery("#daychange").hide();
+                jQuery("#wrap-rate").hide();
+                jQuery('#hsmonths').find('option:first').attr('selected', 'selected');
+                jQuery("#premiumtxt").hide();
+
+                jQuery("#amttext").removeClass('error');
+                jQuery("#nmonths").removeClass('error');
+                jQuery("#fmonths").removeClass('error');
+                jQuery("#hsmonths").removeClass('error');
+                jQuery("#premiumtxt").removeClass('error');
+            }
+            if (select == 4) {
+                jQuery("#nmonths").hide();
+                jQuery("#monthchange").show();
+                jQuery("#daychange").hide();
+                jQuery("#wrap-rate").hide();
+                //jQuery('#psmonths').find('option:first').attr('selected', 'selected');
+                jQuery("#premiumtxt").show();
+                //jQuery("#psmonths").show();
+
+                jQuery("#amttext").removeClass('error');
+                jQuery("#nmonths").removeClass('error');
+                jQuery("#fmonths").removeClass('error');
+                jQuery("#hsmonths").removeClass('error');
+                jQuery("#premiumtxt").removeClass('error');
+            }
+
+        });
+
+
+        jQuery("#clearBtn").click(function() {
+
+            jQuery("#amttext").val('');
+            jQuery("#types").val('0');
+            jQuery("#result_rate").text('');
+            jQuery("#nmonths").val('');
+            jQuery("#premiumtxt").val('');
+            jQuery("#fmonths").show();
+            jQuery("#monthchange").show();
+            jQuery("#daychange").hide();
+            jQuery("#wrap-rate").hide();
+            jQuery("#get-rate").hide();
+            jQuery("#nmonths").hide();
+            jQuery("#hsmonths").hide();
+            jQuery('#fmonths').find('option:first').attr('selected', 'selected');
+            jQuery("#premiumtxt").hide();
+            //jQuery("#psmonths").hide();
+
+            jQuery("#amttext").removeClass('error');
+            jQuery("#nmonths").removeClass('error');
+            jQuery("#fmonths").removeClass('error');
+            jQuery("#hsmonths").removeClass('error');
+            jQuery("#premiumtxt").removeClass('error');
+
+        });
+
+        jQuery("#fmonths").change(function() {
+            // jQuery("#result_rate").text('');
+            // jQuery("#amttext").val('');
+            // jQuery("#nmonths").val('');
+            // jQuery(".months").hide();
+            var select = jQuery("#fmonths").val();
+            if (select == 6.75) {
+                jQuery("#wrap-rate").show();
+                //jQuery("#get-rate").hide();
+                jQuery("#interest-rate-show").html(select);
+                //           	jQuery("#monthchange").show();
+                // jQuery("#daychange").hide();
+            } else if (select == 7.25) {
+                jQuery("#wrap-rate").show();
+                //	jQuery("#get-rate").hide();
+                jQuery("#interest-rate-show").html(select);
+            } else if (select == 7.5) { //Call Deposit
+                jQuery("#wrap-rate").show();
+                //	jQuery("#get-rate").hide();
+                jQuery("#interest-rate-show").html(select);
+            } else if (select == 7.75) {
+                jQuery("#wrap-rate").show();
+                //	jQuery("#get-rate").hide();
+                jQuery("#interest-rate-show").html(select);
+            } else if (select == 8.15) {
+                jQuery("#wrap-rate").show();
+                //	jQuery("#get-rate").hide();
+                jQuery("#interest-rate-show").html(select);
+            } else if (select == 8.5) {
+                jQuery("#wrap-rate").show();
+                //jQuery("#get-rate").show();
+                jQuery("#interest-rate-show").html(select);
+            } else {
+                jQuery("#wrap-rate").hide();
+                //jQuery("#get-rate").hide();
+            }
+
+        });
+
+
+
+        jQuery("#nmonths").change(function() {
+            // jQuery("#result_rate").text('');
+            // jQuery("#amttext").val('');
+            // jQuery("#nmonths").val('');
+            // jQuery(".months").hide();
+            var select = jQuery("#nmonths").val();
+            var savingsrate = jQuery("#smonths").val();
+            if (select !== '') {
+                jQuery("#wrap-rate").show();
+                jQuery("#interest-rate-show").html(savingsrate);
+                //           	jQuery("#monthchange").show();
+                // jQuery("#daychange").hide();
+            } else {
+                jQuery("#wrap-rate").hide();
+            }
+
+        });
+
+        jQuery("#hsmonths").change(function() {
+            // jQuery("#result_rate").text('');
+            // jQuery("#amttext").val('');
+            // jQuery("#nmonths").val('');
+            // jQuery(".months").hide();
+            var select = jQuery("#hsmonths").val();
+            var savingsrate = jQuery("#highspeed2").val();
+            if (select !== '') {
+                jQuery("#wrap-rate").show();
+                jQuery("#interest-rate-show").html(savingsrate);
+                //           	jQuery("#monthchange").show();
+                // jQuery("#daychange").hide();
+            } else {
+                jQuery("#wrap-rate").hide();
+            }
+
+        });
+
+        // jQuery("#psmonths").change(function(){
+        //  jQuery("#result_rate").text('');
+        //  jQuery("#amttext").val('');
+        //  jQuery("#nmonths").val('');
+        //  jQuery(".months").hide();
+        // var select = jQuery("#psmonths").val();
+        // var savingsrate = jQuery("#premium2").val();
+        //   if(select!=='') { 
+        //           	jQuery("#wrap-rate").show();
+        //           	jQuery("#interest-rate-show").html(savingsrate);
+        // //           	jQuery("#monthchange").show();
+        // // jQuery("#daychange").hide();
+        //   }else{
+        //   	jQuery("#wrap-rate").hide();
+        //   }
+
+        //     });
+
+
+
+
+
+        jQuery('#rate_calculate').click(function() {
+
+
+
+
+            var rep = jQuery("#amttext").val();
+            var type = jQuery("#types").val();
+            var amt = parseInt(rep.replaceAll(",", ""));
+            var rate;
+            var rateresult;
+            var month;
+            var i;
+            //var txtget;
+
+            var $amount = jQuery("#amttext");
+
+            var amount = $amount.val();
+            var period1 = jQuery("#fmonths").val();
+            var period2 = jQuery("#nmonths").val();
+            var period3 = jQuery("#hsmonths").val();
+            var period4 = jQuery("#premiumtxt").val();
+
+
+            if (amt == "" || amt % 1 !== 0 || amt == "0") {
+                jQuery('#amttext').addClass('error');
+            } else {
+                jQuery('#amttext').removeClass('error');
+            }
+
+            if (period1 == "") {
+                jQuery("#fmonths").addClass('error');
+            } else {
+                jQuery("#fmonths").removeClass('error');
+            }
+
+            if (period2 == "") {
+                jQuery("#nmonths").addClass('error');
+            } else {
+                jQuery("#nmonths").removeClass('error');
+            }
+
+            if (period3 == "") {
+                jQuery("#hsmonths").addClass('error');
+            } else {
+                jQuery("#hsmonths").removeClass('error');
+            }
+
+            if (period4 == "") {
+                jQuery("#premiumtxt").addClass('error');
+            } else {
+                jQuery("#premiumtxt").removeClass('error');
+            }
+
+
+
+            if (type == 0) {
+
+                month = parseInt(jQuery("#fmonths option:selected").text());
+                rate = parseFloat(jQuery("#fmonths").val());
+                if (month == 365 || month == 24) {
+                    i = (month == 365) ? 1 : 2;
+                    //txtget = ( month == 12 ) ? ' ':'၆ လ တစ်ကြိမ် အတိုးထုတ်ယူနိုင်ခွင့်';
+                    jQuery("#wrap-rate").show();
+                    //jQuery("#get-rate").show();
+                    jQuery("#interest-rate-show").html(rate);
+                    //jQuery("#get-rate").html(txtget);
+                    rateresult = (((amt * rate) / 100) / 365) * 365 * i;
+                } else {
+                    rateresult = (((amt * 1) * rate) / 36500) * month;
+                }
+
+
+
+
+            }
+            if (type == 1) {
+                rate = parseFloat(jQuery("#smonths").val());
+                month = parseInt(jQuery("#nmonths").val());
+                rateresult = (((amt * rate) / 100) / 12) * month;
+
+            }
+            if (type == 2) {
+                // if (amt==10000000 || amt>10000000) {
+                //     rate=6;
+                //   }
+                //   else{
+                //     rate=4;
+                //   }
+
+                if (amt == 10000000 || amt < 10000000) {
+                    rate = 4;
+                    month = parseInt(jQuery("#lmonths").val());
+                    rateresult = amt * month * rate / 36500;
+                } else {
+                    rate = 6;
+                    month = parseInt(jQuery("#lmonths").val());
+                    rateresult = amt * month * rate / 36500;
+                }
+
+                // month=parseInt(jQuery("#lmonths option:selected").text());
+                // rateresult=(((amt * rate)/36500)*30)*month;
+
+                //rate=parseFloat(jQuery("#callmonths").val());
+                //month=parseInt(jQuery("#lmonths").val());
+                //rateresult = amt * month * rate / 36500;
+
+
+                //                     rate=parseFloat(jQuery("#lmonths").val());
+                //                   month=parseInt(jQuery("#lmonths option:selected").text());
+                //                   rateresult=(((amt * rate)/100)/12)*month;
+
+            }
+            if (type == 3) {
+                if (amt > 5000000 || amt == 5000000) {
+                    rate = parseFloat(jQuery("#highspeed2").val());
+                    jQuery("#wrap-rate").show();
+                    jQuery("#interest-rate-show").html(rate);
+                } else {
+                    rate = parseFloat(jQuery("#highspeed1").val());
+                    jQuery("#wrap-rate").show();
+                    jQuery("#interest-rate-show").html(rate);
+                }
+                month = parseInt(jQuery("#hsmonths option:selected").text());
+                rateresult = (((amt * rate) / 100) / 12) * month;
+
+            }
+            if (type == 4) {
+
+                if (amt > 10000000 || amt == 10000000) {
+                    rate = parseFloat(jQuery("#premium2").val());
+
+                    jQuery("#wrap-rate").show();
+                    jQuery("#interest-rate-show").html(rate);
+                } else {
+                    rate = parseFloat(jQuery("#premium1").val());
+                    jQuery("#wrap-rate").show();
+                    jQuery("#interest-rate-show").html(rate);
+                }
+                day = parseInt(jQuery("#premiumtxt").val());
+                //day =parseInt(jQuery("#psmonths").val());
+                rateresult = (((amt * rate) / 100) / 365) * day;
+                //   rate=parseFloat(jQuery("#spmonths").val());
+                // month=parseInt(jQuery("#spmonths option:selected").text());
+                // rateresult=(((amt * rate)/100)/12)*month;
+
+            }
+
+            jQuery("#result_rate").text(CommaFormatted(rateresult.toFixed(2)) + ' MMK');
+
+            function CommaFormatted(amount) {
+                var delimiter = ",";
+                var a = amount.split('.', 2)
+                var d = a[1];
+                var i = parseInt(a[0]);
+                if (isNaN(i)) {
+                    return '';
+                }
+                var minus = '';
+                if (i < 0) {
+                    minus = '-';
+                }
+                i = Math.abs(i);
+                var n = new String(i);
+                var a = [];
+                while (n.length > 3) {
+                    var nn = n.substr(n.length - 3);
+                    a.unshift(nn);
+                    n = n.substr(0, n.length - 3);
+                }
+                if (n.length > 0) {
+                    a.unshift(n);
+                }
+                n = a.join(delimiter);
+                if (d.length < 1) {
+                    amount = n;
+                } else {
+                    amount = n + '.' + d;
+                }
+                amount = minus + amount;
+                return amount;
+            }
+        });
+    });
+</script>
+
+
+
+</html>
